@@ -13,6 +13,53 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# ========================================================
+# 🔒 스터디원 전용 비밀번호 인증 시스템
+# ========================================================
+# 기본 비밀번호 (원하시는 비밀번호로 자유롭게 변경 가능합니다)
+DEFAULT_STUDY_PASSWORD = "treedoctor2026"
+
+def check_study_password():
+    if "authenticated" not in st.session_state:
+        st.session_state.authenticated = False
+
+    if not st.session_state.authenticated:
+        # 로그인 화면 UI
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            st.markdown("<br><br>", unsafe_allow_html=True)
+            with st.container(border=True):
+                st.markdown("### 🔒 나무의사 스터디 전용 학습 도우미")
+                st.caption("AI응용 데이터분석 스터디원만 이용 가능한 비공개 학습 공간입니다.")
+                st.markdown("---")
+                
+                input_pwd = st.text_input(
+                    "스터디 비밀번호를 입력하세요:",
+                    type="password",
+                    placeholder="비밀번호 입력 후 Enter 또는 접속 버튼 클릭",
+                    key="login_pwd_input"
+                )
+                
+                # Streamlit Secrets에 설정된 비밀번호가 있다면 우선 사용, 없으면 기본값 사용
+                correct_pwd = st.secrets.get("STUDY_PASSWORD", DEFAULT_STUDY_PASSWORD)
+                
+                if st.button("🚀 스터디 룸 입장하기", type="primary", use_container_width=True):
+                    if input_pwd == correct_pwd:
+                        st.session_state.authenticated = True
+                        st.success("인증되었습니다! 학습 화면으로 이동합니다.")
+                        st.rerun()
+                    else:
+                        st.error("비밀번호가 올바르지 않습니다. 스터디 리더에게 문의하세요.")
+                
+                st.markdown("<br>", unsafe_allow_html=True)
+                st.info("💡 **초기 비밀번호:** `treedoctor2026`\n\n(비밀번호 변경은 app.py 상단의 DEFAULT_STUDY_PASSWORD에서 수정하실 수 있습니다.)")
+        
+        # 비밀번호를 맞히기 전까지는 하단 도감 데이터 및 퀴즈 구동을 완전히 중단
+        st.stop()
+
+check_study_password()
+
+
 # 데이터 로딩 함수 (캐싱 적용)
 @st.cache_data
 def load_data():
