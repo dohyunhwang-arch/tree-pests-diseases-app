@@ -10,7 +10,7 @@ st.set_page_config(
     page_title="나무의사 2차 실기 & 필기 완벽 대비 학습 도우미",
     page_icon="🌲",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
 # ========================================================
