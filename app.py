@@ -17,7 +17,7 @@ st.set_page_config(
 # 🔒 스터디원 전용 비밀번호 인증 시스템
 # ========================================================
 # 기본 비밀번호 (원하시는 비밀번호로 자유롭게 변경 가능합니다)
-DEFAULT_STUDY_PASSWORD = "treedoctor2026"
+DEFAULT_STUDY_PASSWORD = "td2026"
 
 def check_study_password():
     if "authenticated" not in st.session_state:
