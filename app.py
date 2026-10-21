@@ -52,7 +52,7 @@ def check_study_password():
                         st.error("비밀번호가 올바르지 않습니다. 스터디 리더에게 문의하세요.")
                 
                 st.markdown("<br>", unsafe_allow_html=True)
-                st.info("💡 **초기 비밀번호:** `treedoctor2026`\n\n(비밀번호 변경은 app.py 상단의 DEFAULT_STUDY_PASSWORD에서 수정하실 수 있습니다.)")
+                st.info("💡 **초기 비밀번호:** `td2026`\n\n(비밀번호 변경은 app.py 상단의 DEFAULT_STUDY_PASSWORD에서 수정하실 수 있습니다.)")
         
         # 비밀번호를 맞히기 전까지는 하단 도감 데이터 및 퀴즈 구동을 완전히 중단
         st.stop()
